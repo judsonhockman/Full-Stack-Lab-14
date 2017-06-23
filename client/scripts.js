@@ -4,11 +4,6 @@ var $chirpList = $('#chirp-list');
 
 $chirpField.on('input', function () {
     var isEmpty = $chirpField.val().length === 0;
-    // if (isEmpty) {
-    //     $chirpButton.prop('disabled', true);
-    // } else {
-    //     $chirpButton.prop('disabled', false);
-    // }  or...
     $chirpButton.prop('disabled', isEmpty)
 });
 $chirpButton.click(postChirp);
@@ -30,7 +25,7 @@ function postChirp() {
         $chirpButton.prop('disabled', true);
         getChirps();
     }, function (err) {
-        // if an error occurs...log the error 
+
         console.log(err);
     });
 }
@@ -39,7 +34,7 @@ function getChirps() {
     $.ajax({
         method: 'GET',
         url: '/api/chirps'
-    }).then(function (chirps) { //that is, if it succeeds
+    }).then(function (chirps) {
         $chirpList.empty();
         for (var i = 0; i < chirps.length; i++) {
             var $chirpDiv = $('div class="chirp"></div');
